@@ -5,9 +5,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import ImageGrid from './components/ImageGrid';
 import Statement from './components/Statement';
-import Projects from './components/Projects';
 import Process from './components/Process';
-import FullImage from './components/FullImage';
 import BottomCTA from './components/BottomCTA';
 import Footer from './components/Footer';
 
@@ -17,9 +15,20 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
-    const timer = setTimeout(() => setIsLoading(false), 1800);
-    return () => clearTimeout(timer);
+    document.body.style.overflow = 'hidden';
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = '';
+      setIsLoading(false);
+    }, 1800);
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = '';
+    };
   }, []);
 
   return (
@@ -69,9 +78,7 @@ export default function App() {
             <About />
             <ImageGrid />
             <Statement />
-            <Projects />
             <Process />
-            <FullImage />
             <BottomCTA />
             <Footer />
           </motion.div>

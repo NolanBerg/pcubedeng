@@ -44,7 +44,7 @@ export default function ImageGrid() {
     <section id="projects" className="px-6 md:px-10 lg:px-16 pb-20 md:pb-32">
       <div className="max-w-[1600px] mx-auto">
         <FadeUp>
-          <div className="mb-12">
+          <div className="mb-6">
             <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-4">(002)</p>
             <h2 className="text-[clamp(1.6rem,3vw,3rem)] leading-[1.15] font-bold tracking-[-0.03em] text-grey">
               Our Projects
@@ -52,7 +52,7 @@ export default function ImageGrid() {
           </div>
         </FadeUp>
         <FadeUp>
-          <div className="relative overflow-hidden w-full py-20">
+          <div className="relative overflow-hidden w-full pt-4 pb-20">
             <Carousel slides={slides} />
           </div>
         </FadeUp>

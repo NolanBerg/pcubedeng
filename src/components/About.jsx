@@ -3,7 +3,7 @@ import FadeUp from './FadeUp';
 
 export default function About() {
   return (
-    <section className="px-6 md:px-10 lg:px-16 pb-20 md:pb-32">
+    <section className="px-6 md:px-10 lg:px-16 pt-16 md:pt-24 pb-20 md:pb-32">
       <div id="services" className="max-w-[1600px] mx-auto">
         <FadeUp>
           <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-start">
