@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #0b1012;
+  --color-white: #fff;
+  --color-cream: #f3f0ec;
+  --color-taupe: #d4cec6;
+  --color-grey: #212325;
+
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", monospace;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  margin: 0;
+  text-rendering: optimizeSpeed;
+  color: var(--color-grey);
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+}
