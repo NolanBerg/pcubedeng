@@ -3,24 +3,39 @@ import Carousel from './Carousel';
 
 const slides = [
   {
-    title: 'Wind Farm Development — Wyoming',
+    title: 'Underground Utility Construction',
     button: 'View Project',
-    src: 'https://placehold.co/1200x800/c4beb6/212325?text=Wind+Farm+Project',
+    src: '/brand_assets/project-1.png',
   },
   {
-    title: 'Substation Expansion — Montana',
+    title: 'Substation Development',
     button: 'View Project',
-    src: 'https://placehold.co/1200x800/b8b2aa/212325?text=Substation+Project',
+    src: '/brand_assets/project-2.png',
   },
   {
-    title: 'Transmission Line Upgrade — Colorado',
+    title: 'Transmission Line Infrastructure',
     button: 'View Project',
-    src: 'https://placehold.co/1200x800/a8a29a/212325?text=Transmission+Lines',
+    src: '/brand_assets/project-3.png',
   },
   {
-    title: 'Solar Array Installation — Utah',
+    title: 'Substation Construction',
     button: 'View Project',
-    src: 'https://placehold.co/1200x800/d4cec6/212325?text=Solar+Array',
+    src: '/brand_assets/project-4.png',
+  },
+  {
+    title: 'Wind Turbine Installation',
+    button: 'View Project',
+    src: '/brand_assets/project-5.png',
+  },
+  {
+    title: 'Substation Infrastructure',
+    button: 'View Project',
+    src: '/brand_assets/project-6.png',
+  },
+  {
+    title: 'Wind Farm Construction',
+    button: 'View Project',
+    src: '/brand_assets/project-7.png',
   },
 ];
 
