@@ -1,4 +1,3 @@
-import React from 'react';
 import FadeUp from './FadeUp';
 
 const services = [
@@ -46,13 +45,15 @@ export default function Projects() {
             </div>
             <a
               href="#contact"
-              className="hidden md:inline-flex items-center gap-2 text-sm font-medium text-grey/60 hover:text-grey cursor-pointer group transition-colors duration-200"
+              className="hidden md:inline-flex items-center gap-2 text-sm font-medium text-grey/60 hover:text-grey cursor-pointer group"
+              style={{ transition: 'color 0.2s ease' }}
             >
               Get in touch
               <svg
                 width="16" height="16" viewBox="0 0 16 16" fill="none"
                 stroke="currentColor" strokeWidth="1.5"
-                className="group-hover:translate-x-1 transition-transform duration-200"
+                className="group-hover:translate-x-1"
+                style={{ transition: 'transform 0.2s ease' }}
               >
                 <path d="M3 8h10M9 4l4 4-4 4" />
               </svg>

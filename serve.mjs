@@ -2,7 +2,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 
-const PORT = 3001;
+const PORT = 3000;
 const HOST = '127.0.0.1';
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 

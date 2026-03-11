@@ -12,6 +12,7 @@
 }
 
 * { -webkit-tap-highlight-color: transparent; }
+[id] { scroll-margin-top: 5rem; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body {
   margin: 0;
