@@ -45,7 +45,7 @@ export default function ImageGrid() {
       <div className="max-w-[1600px] mx-auto">
         <FadeUp>
           <div className="mb-6">
-            <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-4">(002)</p>
+            <p className="font-mono text-xs text-brand-brown uppercase tracking-widest mb-4">(002)</p>
             <h2 className="text-[clamp(1.6rem,3vw,3rem)] leading-[1.15] font-bold tracking-[-0.03em] text-grey">
               Our Projects
             </h2>

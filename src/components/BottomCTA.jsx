@@ -14,7 +14,8 @@ export default function BottomCTA() {
               <div className="mt-10">
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-3 text-grey font-medium cursor-pointer group"
+                  className="inline-flex items-center gap-3 text-brand-brown hover:text-brand-gold font-medium cursor-pointer group"
+                  style={{ transition: 'color 0.2s ease' }}
                 >
                   <span className="text-base">Get in touch</span>
                   <svg
@@ -28,7 +29,7 @@ export default function BottomCTA() {
               </div>
             </div>
             <div id="careers" className="flex flex-col justify-center">
-              <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-4">Careers</p>
+              <p className="font-mono text-xs text-brand-brown uppercase tracking-widest mb-4">Careers</p>
               <h3 className="text-[clamp(1.4rem,2.5vw,2.5rem)] leading-[1.15] font-bold tracking-[-0.03em] text-grey mb-4">
                 Interested in a Career?
               </h3>
@@ -37,7 +38,8 @@ export default function BottomCTA() {
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 text-grey font-medium cursor-pointer group"
+                className="inline-flex items-center gap-3 text-brand-gold hover:text-brand-brown font-medium cursor-pointer group"
+                style={{ transition: 'color 0.2s ease' }}
               >
                 <span className="text-base">Apply now</span>
                 <svg

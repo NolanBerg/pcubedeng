@@ -8,7 +8,7 @@ export default function About() {
         <FadeUp>
           <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-start">
             <div>
-              <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-6">(001)</p>
+              <p className="font-mono text-xs text-brand-gold uppercase tracking-widest mb-6">(001)</p>
               <h2 className="text-[clamp(1.6rem,3vw,3rem)] leading-[1.15] font-bold tracking-[-0.03em] text-grey">
                 Powering the Western United States with expert technical services.
               </h2>
