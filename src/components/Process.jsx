@@ -26,7 +26,7 @@ const services = [
 
 export default function Process() {
   return (
-    <section id="services-detail" className="bg-grey text-white px-6 md:px-10 lg:px-16 py-20 md:py-32">
+    <section id="services-detail" className="bg-grey text-white px-6 md:px-10 lg:px-16 py-12 md:py-20">
       <div className="max-w-[1600px] mx-auto">
         <FadeUp>
           <div className="mb-16">
@@ -39,7 +39,10 @@ export default function Process() {
         <FadeUp>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
             {services.map((service) => (
-              <div key={service.num}>
+              <div
+                key={service.num}
+                className="border border-transparent hover:border-brand-gold/60 rounded-lg p-6 -m-6 transition-transform duration-300 ease-out hover:scale-105 cursor-default"
+              >
                 <p className={`font-mono text-sm mb-4 ${Number(service.num) % 2 === 1 ? 'text-brand-gold' : 'text-brand-brown'}`}>{service.num}</p>
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
                 <p className="text-white/50 leading-[1.7] text-sm">{service.text}</p>
