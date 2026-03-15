@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
-  { href: '#projects', label: 'Projects' },
-  { href: '#services-detail', label: 'Services' },
-  { href: '#careers', label: 'Careers' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#services-detail', label: 'Services' },
+  { href: '/#careers', label: 'Careers' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 const contactLinks = [
@@ -18,9 +19,9 @@ export default function Footer() {
       <div className="max-w-[1600px] mx-auto">
         <div className="grid md:grid-cols-4 gap-10 md:gap-12 mb-16">
           <div className="md:col-span-2">
-            <a href="#" className="flex items-center gap-2 cursor-pointer mb-4" aria-label="Home">
+            <Link to="/" className="flex items-center gap-2 cursor-pointer mb-4" aria-label="Home">
               <img src="/logo.png" alt="P Cubed Inc." className="h-10 w-auto" />
-            </a>
+            </Link>
             <p className="text-sm text-grey/50 leading-[1.7] max-w-sm">
               Technical services for the power industry. Based in Wyoming, servicing the Western United States since 2008.
             </p>

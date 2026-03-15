@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const premiumEase = [0.76, 0, 0.24, 1];
 
 const links = [
-  { href: '#projects', label: 'Projects' },
-  { href: '#services-detail', label: 'Services' },
-  { href: '#careers', label: 'Careers' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#services-detail', label: 'Services' },
+  { href: '/#careers', label: 'Careers' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 export default function Navbar({ isLoading }) {
@@ -15,7 +16,7 @@ export default function Navbar({ isLoading }) {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm">
       <div className="max-w-[1600px] mx-auto flex items-center justify-between px-6 md:px-10 lg:px-16 py-1">
         {/* Logo — layoutId matches preloader */}
-        <a href="#" className="flex items-center gap-2 cursor-pointer -ml-6" aria-label="Home">
+        <Link to="/" className="flex items-center gap-2 cursor-pointer -ml-6" aria-label="Home">
           {!isLoading && (
             <motion.div
               layoutId="site-logo"
@@ -29,7 +30,7 @@ export default function Navbar({ isLoading }) {
               />
             </motion.div>
           )}
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <motion.div

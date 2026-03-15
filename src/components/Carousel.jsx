@@ -1,4 +1,5 @@
 import React, { useState, useRef, useId, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 
 const Slide = ({ slide, offset, isCurrent, handleClick }) => {
@@ -33,7 +34,7 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
     yRef.current = 0;
   };
 
-  const { src, button, title } = slide;
+  const { src, button, title, slug } = slide;
 
   // Each slide is absolutely positioned and translated by its offset from current
   // offset: -1 = one to the left, 0 = current, 1 = one to the right, etc.
@@ -99,8 +100,10 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
           {title}
         </h2>
         <div className="flex justify-center">
-          <button
-            className="mt-6 px-4 py-2 w-fit mx-auto sm:text-sm text-grey bg-cream h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:opacity-80 focus-visible:ring-2 focus-visible:ring-cream/60 active:scale-[0.97] cursor-pointer"
+          <Link
+            to={`/projects/${slug}`}
+            onClick={(e) => e.stopPropagation()}
+            className="mt-6 px-4 py-2 w-fit mx-auto sm:text-sm text-grey bg-cream h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:opacity-80 focus-visible:ring-2 focus-visible:ring-cream/60 active:scale-[0.97] cursor-pointer no-underline"
             style={{
               transition: 'opacity 0.2s ease, transform 0.2s ease',
               boxShadow:
@@ -108,7 +111,7 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
             }}
           >
             {button}
-          </button>
+          </Link>
         </div>
       </article>
     </li>
