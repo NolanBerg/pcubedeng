@@ -1,15 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const premiumEase = [0.76, 0, 0.24, 1];
 
 const links = [
-  { href: '/#projects', label: 'Projects' },
-  { href: '/#services-detail', label: 'Services' },
-  { href: '/#careers', label: 'Careers' },
-  { href: '/#contact', label: 'Contact' },
+  { hash: '#projects', label: 'Projects' },
+  { hash: '#services-detail', label: 'Services' },
+  { hash: '#careers', label: 'Careers' },
+  { hash: '#contact', label: 'Contact' },
 ];
+
+function NavLink({ hash, label }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      // Already on homepage, just scroll
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Navigate to homepage, then scroll after render
+      navigate('/');
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
+  return (
+    <a
+      href={`/${hash}`}
+      onClick={handleClick}
+      className="text-sm text-grey/70 hover:text-grey cursor-pointer font-medium transition-colors duration-200"
+    >
+      {label}
+    </a>
+  );
+}
 
 export default function Navbar({ isLoading }) {
   return (
@@ -42,14 +73,8 @@ export default function Navbar({ isLoading }) {
           }}
           transition={{ duration: 0.7, delay: 0.9, ease: premiumEase }}
         >
-          {links.map(({ href, label }) => (
-            <a
-              key={label}
-              href={href}
-              className="text-sm text-grey/70 hover:text-grey cursor-pointer font-medium transition-colors duration-200"
-            >
-              {label}
-            </a>
+          {links.map(({ hash, label }) => (
+            <NavLink key={label} hash={hash} label={label} />
           ))}
         </motion.div>
 

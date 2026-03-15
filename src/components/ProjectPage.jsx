@@ -1,12 +1,26 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import projects from '../data/projects';
 
 export default function ProjectPage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const project = projects.find((p) => p.slug === slug);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
+  const handleBackToProjects = (e) => {
+    e.preventDefault();
+    navigate('/');
+    setTimeout(() => {
+      const el = document.querySelector('#projects');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
 
   if (!project) {
     return (
@@ -31,15 +45,16 @@ export default function ProjectPage() {
       <Navbar isLoading={false} />
       <div className="pt-28 pb-20 px-6 md:px-10 lg:px-16">
         <div className="max-w-[1600px] mx-auto">
-          <Link
-            to="/#projects"
+          <a
+            href="/#projects"
+            onClick={handleBackToProjects}
             className="inline-flex items-center gap-2 text-sm text-grey/50 hover:text-grey transition-colors duration-200 mb-8"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M10 12L6 8L10 4" />
             </svg>
             Back to Projects
-          </Link>
+          </a>
           <div className="mb-8">
             <p className="font-mono text-xs uppercase tracking-widest text-grey/40 mb-4">Project</p>
             <h1 className="text-[clamp(1.8rem,4vw,3.5rem)] leading-[1.1] font-bold tracking-[-0.03em] text-grey">

@@ -1,12 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { href: '/#projects', label: 'Projects' },
-  { href: '/#services-detail', label: 'Services' },
-  { href: '/#careers', label: 'Careers' },
-  { href: '/#contact', label: 'Contact' },
+  { hash: '#projects', label: 'Projects' },
+  { hash: '#services-detail', label: 'Services' },
+  { hash: '#careers', label: 'Careers' },
+  { hash: '#contact', label: 'Contact' },
 ];
+
+function FooterNavLink({ hash, label }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
+  return (
+    <a
+      href={`/${hash}`}
+      onClick={handleClick}
+      className="text-sm text-grey/60 hover:text-grey cursor-pointer transition-colors duration-200"
+    >
+      {label}
+    </a>
+  );
+}
 
 const contactLinks = [
   { href: 'mailto:info@pcubedeng.com', label: 'info@pcubedeng.com' },
@@ -29,10 +58,8 @@ export default function Footer() {
           <div>
             <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-4">Navigation</p>
             <div className="flex flex-col gap-2">
-              {navLinks.map(({ href, label }) => (
-                <a key={label} href={href} className="text-sm text-grey/60 hover:text-grey cursor-pointer transition-colors duration-200">
-                  {label}
-                </a>
+              {navLinks.map(({ hash, label }) => (
+                <FooterNavLink key={label} hash={hash} label={label} />
               ))}
             </div>
           </div>
