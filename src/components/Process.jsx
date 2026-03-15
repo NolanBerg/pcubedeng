@@ -26,7 +26,7 @@ const services = [
 
 export default function Process() {
   return (
-    <section id="services-detail" className="bg-grey text-white px-6 md:px-10 lg:px-16 py-12 md:py-20">
+    <section id="services-detail" className="text-white px-6 md:px-10 lg:px-16 py-12 md:py-20" style={{ backgroundColor: '#2F3336' }}>
       <div className="max-w-[1600px] mx-auto">
         <FadeUp>
           <div className="mb-16">
@@ -41,7 +41,7 @@ export default function Process() {
             {services.map((service) => (
               <div
                 key={service.num}
-                className="border border-transparent hover:border-brand-gold/60 rounded-lg p-6 -m-6 transition-transform duration-300 ease-out hover:scale-105 cursor-default"
+                className={`border border-transparent ${Number(service.num) % 2 === 1 ? 'hover:border-brand-brown/60' : 'hover:border-brand-gold/60'} rounded-lg p-6 -m-6 transition-transform duration-300 ease-out hover:scale-105 cursor-default`}
               >
                 <p className={`font-mono text-sm mb-4 ${Number(service.num) % 2 === 1 ? 'text-brand-gold' : 'text-brand-brown'}`}>{service.num}</p>
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
