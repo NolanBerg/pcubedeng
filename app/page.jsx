@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import Navbar from '../src/components/Navbar';
 import Hero from '../src/components/Hero';
@@ -17,14 +17,17 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [skipPreloader, setSkipPreloader] = useState(false);
 
-  useEffect(() => {
-    const hasVisited = sessionStorage.getItem('hasVisited') === 'true';
-
+  // useLayoutEffect runs before paint — prevents preloader flash for returning visitors
+  useLayoutEffect(() => {
+    const hasVisited = typeof window !== 'undefined' && sessionStorage.getItem('hasVisited') === 'true';
     if (hasVisited) {
-      // Internal navigation — skip preloader instantly
       setSkipPreloader(true);
       setIsLoading(false);
+    }
+  }, []);
 
+  useEffect(() => {
+    if (skipPreloader) {
       const scrollTarget = sessionStorage.getItem('scrollTarget');
       if (scrollTarget) {
         sessionStorage.removeItem('scrollTarget');
@@ -37,6 +40,7 @@ export default function HomePage() {
     }
 
     // Fresh visit — show preloader
+    sessionStorage.setItem('hasVisited', 'true');
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
@@ -45,21 +49,20 @@ export default function HomePage() {
     const timer = setTimeout(() => {
       window.scrollTo(0, 0);
       document.body.style.overflow = '';
-      sessionStorage.setItem('hasVisited', 'true');
       setIsLoading(false);
     }, 1800);
     return () => {
       clearTimeout(timer);
       document.body.style.overflow = '';
     };
-  }, []);
+  }, [skipPreloader]);
 
   return (
     <LayoutGroup>
       <div className="relative min-h-screen bg-cream overflow-hidden">
-        {/* PRELOADER */}
+        {/* PRELOADER — only on fresh visit, never on internal nav */}
         <AnimatePresence>
-          {isLoading && (
+          {isLoading && !skipPreloader && (
             <motion.div
               className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
               exit={{
@@ -87,13 +90,13 @@ export default function HomePage() {
 
         {/* SITE */}
         <div className="relative z-10">
-          <Navbar isLoading={isLoading} premiumEase={premiumEase} />
+          <Navbar isLoading={isLoading && !skipPreloader} premiumEase={premiumEase} />
 
           <motion.div
             initial={skipPreloader ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             animate={{
-              opacity: isLoading ? 0 : 1,
-              y: isLoading ? 40 : 0,
+              opacity: isLoading && !skipPreloader ? 0 : 1,
+              y: isLoading && !skipPreloader ? 40 : 0,
             }}
             transition={skipPreloader ? { duration: 0 } : { duration: 1, delay: 0.5, ease: premiumEase }}
           >

@@ -4,7 +4,7 @@ import projects from '../data/projects';
 
 export default function ImageGrid() {
   return (
-    <section id="projects" className="px-6 md:px-10 lg:px-16 pb-20 md:pb-32">
+    <section id="projects" className="px-6 md:px-10 lg:px-16 pb-8 md:pb-12">
       <div className="max-w-[1600px] mx-auto">
         <FadeUp>
           <div className="mb-6">

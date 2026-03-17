@@ -72,7 +72,7 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
         <img
           className="absolute inset-0 w-[120%] h-[120%] object-cover"
           style={{
-            opacity: isCurrent ? 1 : 0.4,
+            opacity: isCurrent ? 1 : 0.7,
             transition: 'opacity 0.6s ease-in-out',
           }}
           alt={title}
@@ -82,33 +82,26 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
         />
         {!isCurrent && (
           <div
-            className="absolute inset-0 bg-black/30"
+            className="absolute inset-0 bg-black/15"
             style={{ transition: 'opacity 1s ease' }}
           />
         )}
       </div>
 
-      <div
-        className="relative px-[4vmin]"
-        style={{
-          opacity: isCurrent ? 1 : 0,
-          visibility: isCurrent ? 'visible' : 'hidden',
-          transition: 'opacity 1s ease-in-out',
-        }}
-      >
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold relative font-sans text-grey">
-          {title}
-        </h2>
-      </div>
+      {/* spacer to push content to bottom */}
+      <div className="flex-1" />
 
       <div
-        className="relative px-[4vmin]"
+        className="relative px-[4vmin] flex flex-col items-center gap-3"
         style={{
           opacity: isCurrent ? 1 : 0,
           visibility: isCurrent ? 'visible' : 'hidden',
           transition: 'opacity 1s ease-in-out',
         }}
       >
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold relative font-sans text-white">
+          {title}
+        </h2>
         <Link
           href={`/projects/${slug}`}
           onClick={(e) => e.stopPropagation()}
