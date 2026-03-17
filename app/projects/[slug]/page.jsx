@@ -19,11 +19,8 @@ export default function ProjectPage() {
 
   const handleBackToProjects = (e) => {
     e.preventDefault();
+    sessionStorage.setItem('scrollTarget', '#projects');
     router.push('/');
-    setTimeout(() => {
-      const el = document.querySelector('#projects');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
   };
 
   if (!project) {

@@ -19,11 +19,8 @@ function FooterNavLink({ hash, label }) {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     } else {
+      sessionStorage.setItem('scrollTarget', hash);
       router.push('/');
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
     }
   };
 

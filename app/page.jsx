@@ -15,8 +15,28 @@ const premiumEase = [0.76, 0, 0.24, 1];
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
+  const [skipPreloader, setSkipPreloader] = useState(false);
 
   useEffect(() => {
+    const hasVisited = sessionStorage.getItem('hasVisited') === 'true';
+
+    if (hasVisited) {
+      // Internal navigation — skip preloader instantly
+      setSkipPreloader(true);
+      setIsLoading(false);
+
+      const scrollTarget = sessionStorage.getItem('scrollTarget');
+      if (scrollTarget) {
+        sessionStorage.removeItem('scrollTarget');
+        requestAnimationFrame(() => {
+          const el = document.querySelector(scrollTarget);
+          if (el) el.scrollIntoView({ behavior: 'instant' });
+        });
+      }
+      return;
+    }
+
+    // Fresh visit — show preloader
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
@@ -25,6 +45,7 @@ export default function HomePage() {
     const timer = setTimeout(() => {
       window.scrollTo(0, 0);
       document.body.style.overflow = '';
+      sessionStorage.setItem('hasVisited', 'true');
       setIsLoading(false);
     }, 1800);
     return () => {
@@ -69,12 +90,12 @@ export default function HomePage() {
           <Navbar isLoading={isLoading} premiumEase={premiumEase} />
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={skipPreloader ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             animate={{
               opacity: isLoading ? 0 : 1,
               y: isLoading ? 40 : 0,
             }}
-            transition={{ duration: 1, delay: 0.5, ease: premiumEase }}
+            transition={skipPreloader ? { duration: 0 } : { duration: 1, delay: 0.5, ease: premiumEase }}
           >
             <Hero />
             <About />

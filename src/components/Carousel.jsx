@@ -43,7 +43,7 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
   return (
     <li
       ref={slideRef}
-      className="absolute top-0 left-0 flex flex-col items-center justify-center text-center text-white w-[70vmin] h-[70vmin] z-10 cursor-pointer [perspective:1200px]"
+      className="absolute top-0 left-0 flex flex-col items-center justify-between pt-[4vmin] pb-[4vmin] text-center w-[70vmin] h-[70vmin] z-10 cursor-pointer [perspective:1200px]"
       onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -80,7 +80,7 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
           loading="eager"
           decoding="sync"
         />
-        {isCurrent && (
+        {!isCurrent && (
           <div
             className="absolute inset-0 bg-black/30"
             style={{ transition: 'opacity 1s ease' }}
@@ -88,32 +88,40 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
         )}
       </div>
 
-      <article
-        className="relative p-[4vmin]"
+      <div
+        className="relative px-[4vmin]"
         style={{
           opacity: isCurrent ? 1 : 0,
           visibility: isCurrent ? 'visible' : 'hidden',
           transition: 'opacity 1s ease-in-out',
         }}
       >
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold relative font-sans">
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold relative font-sans text-grey">
           {title}
         </h2>
-        <div className="flex justify-center">
-          <Link
-            href={`/projects/${slug}`}
-            onClick={(e) => e.stopPropagation()}
-            className="mt-6 px-4 py-2 w-fit mx-auto sm:text-sm text-grey bg-cream h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:opacity-80 focus-visible:ring-2 focus-visible:ring-cream/60 active:scale-[0.97] cursor-pointer no-underline"
-            style={{
-              transition: 'opacity 0.2s ease, transform 0.2s ease',
-              boxShadow:
-                '0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)',
-            }}
-          >
-            {button}
-          </Link>
-        </div>
-      </article>
+      </div>
+
+      <div
+        className="relative px-[4vmin]"
+        style={{
+          opacity: isCurrent ? 1 : 0,
+          visibility: isCurrent ? 'visible' : 'hidden',
+          transition: 'opacity 1s ease-in-out',
+        }}
+      >
+        <Link
+          href={`/projects/${slug}`}
+          onClick={(e) => e.stopPropagation()}
+          className="px-4 py-2 w-fit mx-auto sm:text-sm text-grey bg-cream h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:opacity-80 focus-visible:ring-2 focus-visible:ring-cream/60 active:scale-[0.97] cursor-pointer no-underline"
+          style={{
+            transition: 'opacity 0.2s ease, transform 0.2s ease',
+            boxShadow:
+              '0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)',
+          }}
+        >
+          {button}
+        </Link>
+      </div>
     </li>
   );
 };

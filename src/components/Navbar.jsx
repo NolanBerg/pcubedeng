@@ -23,12 +23,9 @@ function NavLink({ hash, label }) {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // Navigate to homepage, then scroll after render
+      // Navigate to homepage — home page will handle instant scroll
+      sessionStorage.setItem('scrollTarget', hash);
       router.push('/');
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
     }
   };
 

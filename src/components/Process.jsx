@@ -41,7 +41,7 @@ export default function Process() {
             {services.map((service) => (
               <div
                 key={service.num}
-                className={`border border-transparent ${Number(service.num) % 2 === 1 ? 'hover:border-brand-brown/60' : 'hover:border-brand-gold/60'} rounded-lg p-6 -m-6 transition-transform duration-300 ease-out hover:scale-105 cursor-default`}
+                className={`border border-transparent hover:border-white/60 rounded-lg p-6 -m-6 transition-transform duration-300 ease-out hover:scale-105 cursor-default`}
               >
                 <p className={`font-mono text-sm mb-4 ${Number(service.num) % 2 === 1 ? 'text-brand-gold' : 'text-brand-brown'}`}>{service.num}</p>
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
