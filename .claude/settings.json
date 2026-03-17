@@ -1,7 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(lsof -ti:3000,3001,3002)"
+      "Bash(lsof -ti:3000,3001,3002)",
+      "Bash(grep -r \"form\\\\|submit\\\\|contact\\\\|POST\\\\|fetch\\\\|api\" /Users/nolanb/Projects/p3/*.mjs /Users/nolanb/Projects/p3/*.js)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx next:*)",
+      "Bash(xargs kill:*)",
+      "Bash(node /Users/nolanb/Projects/p3/screenshot.mjs http://127.0.0.1:3000 nextjs-home)",
+      "Bash(node /Users/nolanb/Projects/p3/screenshot.mjs http://127.0.0.1:3000/projects/underground-utility-construction nextjs-project)",
+      "Read(//Users/nolanb/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/nolanb/Projects/p3/app/projects"
     ]
   }
 }

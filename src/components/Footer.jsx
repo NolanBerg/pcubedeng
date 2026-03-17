@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 
 const navLinks = [
   { hash: '#projects', label: 'Projects' },
@@ -9,16 +10,16 @@ const navLinks = [
 ];
 
 function FooterNavLink({ hash, label }) {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (location.pathname === '/') {
+    if (pathname === '/') {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      navigate('/');
+      router.push('/');
       setTimeout(() => {
         const el = document.querySelector(hash);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -48,7 +49,7 @@ export default function Footer() {
       <div className="max-w-[1600px] mx-auto">
         <div className="grid md:grid-cols-4 gap-10 md:gap-12 mb-16">
           <div className="md:col-span-2">
-            <Link to="/" className="flex items-center gap-2 cursor-pointer mb-4" aria-label="Home">
+            <Link href="/" className="flex items-center gap-2 cursor-pointer mb-4" aria-label="Home">
               <img src="/logo.png" alt="P Cubed Inc." className="h-10 w-auto" />
             </Link>
             <p className="text-sm text-grey/50 leading-[1.7] max-w-sm">

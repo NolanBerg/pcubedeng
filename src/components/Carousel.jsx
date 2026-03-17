@@ -1,5 +1,5 @@
 import React, { useState, useRef, useId, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 
 const Slide = ({ slide, offset, isCurrent, handleClick }) => {
@@ -101,7 +101,7 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
         </h2>
         <div className="flex justify-center">
           <Link
-            to={`/projects/${slug}`}
+            href={`/projects/${slug}`}
             onClick={(e) => e.stopPropagation()}
             className="mt-6 px-4 py-2 w-fit mx-auto sm:text-sm text-grey bg-cream h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:opacity-80 focus-visible:ring-2 focus-visible:ring-cream/60 active:scale-[0.97] cursor-pointer no-underline"
             style={{

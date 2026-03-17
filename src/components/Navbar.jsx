@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 const premiumEase = [0.76, 0, 0.24, 1];
@@ -12,18 +13,18 @@ const links = [
 ];
 
 function NavLink({ hash, label }) {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (location.pathname === '/') {
+    if (pathname === '/') {
       // Already on homepage, just scroll
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     } else {
       // Navigate to homepage, then scroll after render
-      navigate('/');
+      router.push('/');
       setTimeout(() => {
         const el = document.querySelector(hash);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -47,7 +48,7 @@ export default function Navbar({ isLoading }) {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm">
       <div className="max-w-[1600px] mx-auto flex items-center justify-between px-6 md:px-10 lg:px-16 py-1">
         {/* Logo — layoutId matches preloader */}
-        <Link to="/" className="flex items-center gap-2 cursor-pointer -ml-6" aria-label="Home">
+        <Link href="/" className="flex items-center gap-2 cursor-pointer -ml-6" aria-label="Home">
           {!isLoading && (
             <motion.div
               layoutId="site-logo"
