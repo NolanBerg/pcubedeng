@@ -1,6 +1,9 @@
 import React, { useState, useRef, useId, useEffect } from 'react';
 import Link from 'next/link';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
+import { animate as fmAnimate, useMotionValue } from 'framer-motion';
+
+const AUTOPLAY_DURATION = 5;
 
 const Slide = ({ slide, offset, isCurrent, handleClick }) => {
   const slideRef = useRef(null);
@@ -38,12 +41,12 @@ const Slide = ({ slide, offset, isCurrent, handleClick }) => {
 
   // Each slide is absolutely positioned and translated by its offset from current
   // offset: -1 = one to the left, 0 = current, 1 = one to the right, etc.
-  const slideWidth = 78; // 70vmin + 2*4vmin margins
+  const slideWidth = 71; // 63vmin + 2*4vmin margins
 
   return (
     <li
       ref={slideRef}
-      className="absolute top-0 left-0 flex flex-col items-center justify-between pt-[4vmin] pb-[4vmin] text-center w-[70vmin] h-[70vmin] z-10 cursor-pointer [perspective:1200px]"
+      className="absolute top-0 left-0 flex flex-col items-center justify-between pt-[4vmin] pb-[4vmin] text-center w-[63vmin] h-[63vmin] z-10 cursor-pointer [perspective:1200px]"
       onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -146,6 +149,19 @@ function circularOffset(from, to, len) {
 export default function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
   const len = slides.length;
+  const progress = useMotionValue(0);
+  const animationRef = useRef(null);
+
+  useEffect(() => {
+    progress.set(0);
+    const animation = fmAnimate(progress, 1, {
+      duration: AUTOPLAY_DURATION,
+      ease: 'linear',
+      onComplete: () => setCurrent((c) => (c + 1) % len),
+    });
+    animationRef.current = animation;
+    return () => animation.stop();
+  }, [current, len, progress]);
 
   const handlePreviousClick = () => {
     setCurrent((c) => (c - 1 + len) % len);
@@ -165,8 +181,10 @@ export default function Carousel({ slides }) {
 
   return (
     <div
-      className="relative w-[70vmin] h-[70vmin] mx-auto"
+      className="relative w-[63vmin] h-[63vmin] mx-auto"
       aria-labelledby={`carousel-heading-${id}`}
+      onMouseEnter={() => animationRef.current?.pause()}
+      onMouseLeave={() => animationRef.current?.play()}
     >
       <ul className="absolute inset-0">
         {slides.map((slide, index) => {
