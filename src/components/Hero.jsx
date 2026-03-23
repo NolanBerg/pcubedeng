@@ -29,7 +29,7 @@ export default function Hero() {
               </p>
             </FadeUp>
             <FadeUp className="hidden md:block pb-2">
-              <p className="text-xs font-mono text-white/50 uppercase tracking-wider mb-3">
+              <p className="text-sm font-mono text-white/50 uppercase tracking-wider mb-3">
                 Scroll to explore
               </p>
               <div className="w-px h-12 bg-white/30" />
