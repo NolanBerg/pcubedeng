@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import Navbar from '../src/components/Navbar';
 import Hero from '../src/components/Hero';
@@ -14,11 +14,18 @@ import Footer from '../src/components/Footer';
 const premiumEase = [0.76, 0, 0.24, 1];
 
 export default function HomePage() {
-  // Check before state init — during client-side nav, window IS available
-  const isReturning = typeof window !== 'undefined' && sessionStorage.getItem('hasVisited') === 'true';
+  const [isLoading, setIsLoading] = useState(true);
+  const [skipPreloader, setSkipPreloader] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(!isReturning);
-  const [skipPreloader, setSkipPreloader] = useState(isReturning);
+  // Runs synchronously before browser paint — avoids black flash on return nav
+  // Initial state matches server (isLoading=true) so no hydration mismatch
+  useLayoutEffect(() => {
+    const isReturning = sessionStorage.getItem('hasVisited') === 'true';
+    if (isReturning) {
+      setIsLoading(false);
+      setSkipPreloader(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (skipPreloader) {

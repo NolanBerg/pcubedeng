@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import { animate as fmAnimate, useMotionValue } from 'framer-motion';
 
-const AUTOPLAY_DURATION = 5;
+const AUTOPLAY_DURATION = 3;
 
 const Slide = ({ slide, offset, isCurrent, handleClick }) => {
   const slideRef = useRef(null);
