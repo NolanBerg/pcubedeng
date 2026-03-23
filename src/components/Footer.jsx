@@ -54,7 +54,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-4">Navigation</p>
+            <p className="font-mono text-xs text-brand-brown uppercase tracking-widest mb-4">Navigation</p>
             <div className="flex flex-col gap-2">
               {navLinks.map(({ hash, label }) => (
                 <FooterNavLink key={label} hash={hash} label={label} />
@@ -62,7 +62,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-4">Contact Us</p>
+            <p className="font-mono text-xs text-brand-gold uppercase tracking-widest mb-4">Contact Us</p>
             <div className="flex flex-col gap-2">
               {contactLinks.map(({ href, label }) => (
                 <a key={label} href={href} className="text-sm text-grey/60 hover:text-grey cursor-pointer transition-colors duration-200">
