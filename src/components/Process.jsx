@@ -41,7 +41,7 @@ function ServiceGrid({ services }) {
             delay: index * 0.15,
             ease: [0.215, 0.61, 0.355, 1],
           }}
-          className={`border border-transparent hover:border-white/60 rounded-lg p-6 -m-6 transition-transform duration-300 ease-out hover:scale-105 cursor-default`}
+          className={`p-6 -m-6`}
         >
           <p className={`font-mono text-sm mb-4 text-brand-gold`}>{service.num}</p>
           <h3 className="text-xl font-bold mb-3">{service.title}</h3>

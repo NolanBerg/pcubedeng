@@ -5,4 +5,5 @@ temporary screenshots/
 .DS_Store
 .claude/
 CLAUDE.md
+claude.md
 screenshot.mjs

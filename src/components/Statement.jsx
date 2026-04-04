@@ -14,17 +14,18 @@ export default function Statement() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           {/* Left: safety quote */}
           <FadeUp>
-            <p className="font-mono text-xs text-grey/40 uppercase tracking-widest mb-6">&mdash;</p>
-            <p className="text-[clamp(1.3rem,2.2vw,2rem)] leading-[1.45] text-grey/80">
-              P Cubed prioritizes safety above all else. Our dedicated safety supervisors ensure that every project site maintains the highest standards of compliance and worker protection throughout the entire project lifecycle.
-            </p>
+            <div className="border-t-4 pt-6" style={{ borderColor: '#5C3A0A' }}>
+              <p className="text-[clamp(1.3rem,2.2vw,2rem)] leading-[1.45] text-grey/80">
+                P Cubed prioritizes safety above all else. Our dedicated safety supervisors ensure that every project site maintains the highest standards of compliance and worker protection throughout the entire project lifecycle.
+              </p>
+            </div>
           </FadeUp>
 
           {/* Right: display stats */}
           <FadeUp>
             <div className="grid grid-cols-3 gap-8">
               {stats.map(({ value, label }) => (
-                <div key={label} className="pt-5 border-t border-taupe/40">
+                <div key={label} className="pt-5">
                   <p className="text-[clamp(2.5rem,4vw,4.5rem)] font-normal leading-none tracking-[-0.03em] text-grey">
                     {value}
                   </p>
@@ -34,6 +35,7 @@ export default function Statement() {
                 </div>
               ))}
             </div>
+            <div className="border-b-4 mt-6" style={{ borderColor: '#D4A017' }} />
           </FadeUp>
         </div>
       </div>
