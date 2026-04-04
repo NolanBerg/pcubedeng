@@ -37,8 +37,8 @@ function ServiceGrid({ services }) {
           initial={{ opacity: 0, y: -80 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{
-            duration: 0.4,
-            delay: index * 0.5,
+            duration: 0.5,
+            delay: index * 0.15,
             ease: [0.215, 0.61, 0.355, 1],
           }}
           className={`border border-transparent hover:border-white/60 rounded-lg p-6 -m-6 transition-transform duration-300 ease-out hover:scale-105 cursor-default`}
