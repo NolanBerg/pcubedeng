@@ -10,7 +10,7 @@
 
 ## Local Server
 - **Always serve on 127.0.0.1** — never screenshot a `file:///` URL, and avoid `localhost` to prevent macOS IPv6 resolution issues.
-- Start the dev server: `node serve.mjs` (serves the project root at `http://127.0.0.1:3000`)
+- Start the dev server: if working on a next.js project npm run dev, else `node serve.mjs` (serves the project root at `http://127.0.0.1:3000`)
 - `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
 - If the server is already running, do not start a second instance.
 

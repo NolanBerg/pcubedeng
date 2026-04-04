@@ -5,13 +5,23 @@ import { useRouter, usePathname } from 'next/navigation';
 const navLinks = [
   { hash: '#projects', label: 'Projects' },
   { hash: '#services-detail', label: 'Services' },
-  { hash: '#careers', label: 'Careers' },
   { hash: '#contact', label: 'Contact' },
+  { href: '/merch', label: 'Merch' },
 ];
 
-function FooterNavLink({ hash, label }) {
+function FooterNavLink({ hash, href, label }) {
   const router = useRouter();
   const pathname = usePathname();
+
+  const className = 'text-sm text-grey/60 hover:text-grey cursor-pointer transition-colors duration-200';
+
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {label}
+      </Link>
+    );
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -28,7 +38,7 @@ function FooterNavLink({ hash, label }) {
     <a
       href={`/${hash}`}
       onClick={handleClick}
-      className="text-sm text-grey/60 hover:text-grey cursor-pointer transition-colors duration-200"
+      className={className}
     >
       {label}
     </a>
@@ -36,8 +46,9 @@ function FooterNavLink({ hash, label }) {
 }
 
 const contactLinks = [
-  { href: 'mailto:info@pcubedeng.com', label: 'info@pcubedeng.com' },
-  { href: 'https://www.pcubedeng.com', label: 'pcubedeng.com' },
+  { href: 'tel:+13073772328',           label: '(307) 377-2328'     },
+  { href: 'mailto:bdonelan@p3eng.com',  label: 'bdonelan@p3eng.com' },
+  { href: 'https://www.pcubedeng.com',  label: 'www.pcubedeng.com'  },
 ];
 
 export default function Footer() {
@@ -56,8 +67,8 @@ export default function Footer() {
           <div>
             <p className="font-mono text-xs text-brand-brown uppercase tracking-widest mb-4">Navigation</p>
             <div className="flex flex-col gap-2">
-              {navLinks.map(({ hash, label }) => (
-                <FooterNavLink key={label} hash={hash} label={label} />
+              {navLinks.map(({ hash, href, label }) => (
+                <FooterNavLink key={label} hash={hash} href={href} label={label} />
               ))}
             </div>
           </div>

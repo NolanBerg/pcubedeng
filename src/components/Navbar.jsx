@@ -8,13 +8,25 @@ const premiumEase = [0.76, 0, 0.24, 1];
 const links = [
   { hash: '#projects', label: 'Projects' },
   { hash: '#services-detail', label: 'Services' },
-  { hash: '#careers', label: 'Careers' },
   { hash: '#contact', label: 'Contact' },
+  { href: '/merch', label: 'Merch' },
 ];
 
-function NavLink({ hash, label, atTop, onNavigate }) {
+function NavLink({ hash, href, label, atTop, onNavigate }) {
   const router = useRouter();
   const pathname = usePathname();
+
+  const className = `text-sm cursor-pointer font-medium transition-colors duration-300 ${
+    atTop ? 'text-white/80 hover:text-white' : 'text-grey/70 hover:text-grey'
+  }`;
+
+  if (href) {
+    return (
+      <Link href={href} className={className} onClick={onNavigate}>
+        {label}
+      </Link>
+    );
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -32,9 +44,7 @@ function NavLink({ hash, label, atTop, onNavigate }) {
     <a
       href={`/${hash}`}
       onClick={handleClick}
-      className={`text-sm cursor-pointer font-medium transition-colors duration-300 ${
-        atTop ? 'text-white/80 hover:text-white' : 'text-grey/70 hover:text-grey'
-      }`}
+      className={className}
     >
       {label}
     </a>
@@ -102,8 +112,8 @@ export default function Navbar({ isLoading }) {
             }}
             transition={{ duration: 0.7, delay: 0.9, ease: premiumEase }}
           >
-            {links.map(({ hash, label }) => (
-              <NavLink key={label} hash={hash} label={label} atTop={atTop} />
+            {links.map(({ hash, href, label }) => (
+              <NavLink key={label} hash={hash} href={href} label={label} atTop={atTop} />
             ))}
           </motion.div>
 
@@ -146,19 +156,27 @@ export default function Navbar({ isLoading }) {
             transition={{ duration: 0.25, ease: premiumEase }}
           >
             <div className="flex flex-col justify-center flex-1 px-8 gap-8 pt-20">
-              {links.map(({ hash, label }, i) => (
+              {links.map(({ hash, href, label }, i) => (
                 <motion.div
                   key={label}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.25, delay: i * 0.06, ease: premiumEase }}
                 >
-                  <a
-                    href={`/${hash}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setMenuOpen(false);
-                      const router_push = () => {
+                  {href ? (
+                    <Link
+                      href={href}
+                      onClick={() => setMenuOpen(false)}
+                      className="text-[clamp(2rem,8vw,3rem)] font-bold tracking-[-0.03em] text-grey cursor-pointer"
+                    >
+                      {label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={`/${hash}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMenuOpen(false);
                         if (pathname === '/') {
                           setTimeout(() => {
                             const el = document.querySelector(hash);
@@ -168,13 +186,12 @@ export default function Navbar({ isLoading }) {
                           sessionStorage.setItem('scrollTarget', hash);
                           window.location.href = '/';
                         }
-                      };
-                      router_push();
-                    }}
-                    className="text-[clamp(2rem,8vw,3rem)] font-bold tracking-[-0.03em] text-grey cursor-pointer"
-                  >
-                    {label}
-                  </a>
+                      }}
+                      className="text-[clamp(2rem,8vw,3rem)] font-bold tracking-[-0.03em] text-grey cursor-pointer"
+                    >
+                      {label}
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </div>

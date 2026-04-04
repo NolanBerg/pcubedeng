@@ -1,12 +1,11 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin } from '@tabler/icons-react';
 import FadeUp from './FadeUp';
 
 const socialLinks = [
-  { href: '#', label: 'Facebook',  Icon: IconBrandFacebook  },
-  { href: '#', label: 'Instagram', Icon: IconBrandInstagram },
-  { href: '#', label: 'LinkedIn',  Icon: IconBrandLinkedin  },
+  { href: 'https://www.facebook.com/profile.php?id=61553395595330', label: 'Facebook',  Icon: IconBrandFacebook  },
+  { href: 'https://www.instagram.com/pcubedengineering/',           label: 'Instagram', Icon: IconBrandInstagram },
+  { href: 'https://www.linkedin.com/company/p-cubed-inc/',          label: 'LinkedIn',  Icon: IconBrandLinkedin  },
 ];
 
 export default function Hero() {
@@ -36,6 +35,8 @@ export default function Hero() {
           <motion.a
             key={label}
             href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={label}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
