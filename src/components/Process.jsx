@@ -58,8 +58,7 @@ export default function Process() {
       <div className="max-w-[1600px] mx-auto">
         <FadeUp>
           <div className="mb-16">
-            <p className="font-mono text-xs uppercase tracking-widest mb-6">(003)</p>
-            <h2 className="text-[clamp(1.6rem,3vw,3rem)] leading-[1.15] font-bold tracking-[-0.03em] max-w-2xl">
+<h2 className="text-[clamp(1.6rem,3vw,3rem)] leading-[1.15] font-bold tracking-[-0.03em] max-w-2xl">
               Our Services
             </h2>
           </div>
