@@ -9,7 +9,8 @@
       "Bash(node /Users/nolanb/Projects/p3/screenshot.mjs http://127.0.0.1:3000/projects/underground-utility-construction nextjs-project)",
       "Read(//Users/nolanb/**)",
       "Bash(node screenshot.mjs http://127.0.0.1:3000)",
-      "Bash(node screenshot.mjs http://127.0.0.1:3000 statement2)"
+      "Bash(node screenshot.mjs http://127.0.0.1:3000 statement2)",
+      "Bash(node screenshot.mjs http://127.0.0.1:3000 projects)"
     ],
     "additionalDirectories": [
       "/Users/nolanb/Projects/p3/app/projects"

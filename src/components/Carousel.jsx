@@ -1,218 +1,42 @@
-import React, { useState, useRef, useId, useEffect } from 'react';
 import Link from 'next/link';
-import { IconArrowNarrowRight } from '@tabler/icons-react';
-import { animate as fmAnimate, useMotionValue } from 'framer-motion';
+import { Marquee } from './Marquee';
 
-const AUTOPLAY_DURATION = 3;
-
-const Slide = ({ slide, offset, isCurrent, handleClick }) => {
-  const slideRef = useRef(null);
-  const xRef = useRef(0);
-  const yRef = useRef(0);
-  const frameRef = useRef(null);
-
-  useEffect(() => {
-    const animate = () => {
-      if (!slideRef.current) return;
-      slideRef.current.style.setProperty('--x', `${xRef.current}px`);
-      slideRef.current.style.setProperty('--y', `${yRef.current}px`);
-      frameRef.current = requestAnimationFrame(animate);
-    };
-    frameRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
-    };
-  }, []);
-
-  const handleMouseMove = (event) => {
-    const el = slideRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
-    yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
-  };
-
-  const handleMouseLeave = () => {
-    xRef.current = 0;
-    yRef.current = 0;
-  };
-
-  const { src, button, title, slug } = slide;
-
-  // Each slide is absolutely positioned and translated by its offset from current
-  // offset: -1 = one to the left, 0 = current, 1 = one to the right, etc.
-  const slideWidth = 71; // 63vmin + 2*4vmin margins
-
+function ProjectCard({ title, src, slug }) {
   return (
-    <li
-      ref={slideRef}
-      className="absolute top-0 left-0 flex flex-col items-center justify-between pt-[4vmin] pb-[4vmin] text-center w-[63vmin] h-[63vmin] z-10 cursor-pointer [perspective:1200px]"
-      onClick={handleClick}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `translateX(calc(${offset * slideWidth}vmin)) ${
-          !isCurrent ? 'scale(0.98) rotateX(8deg)' : 'scale(1) rotateX(0deg)'
-        }`,
-        // Only animate nearby slides; distant ones reposition instantly while hidden
-        transition: Math.abs(offset) <= 2
-          ? 'transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease'
-          : 'none',
-        transformOrigin: 'bottom',
-        opacity: Math.abs(offset) <= 1 ? 1 : 0,
-        pointerEvents: isCurrent ? 'auto' : 'none',
-      }}
-    >
-      <div
-        className="absolute top-0 left-0 w-full h-full bg-grey rounded-[1%] overflow-hidden"
-        style={{
-          transform: isCurrent
-            ? 'translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)'
-            : 'none',
-          transition: 'transform 0.15s ease-out',
-        }}
-      >
-        <img
-          className="absolute inset-0 w-[120%] h-[120%] object-cover"
-          style={{
-            opacity: isCurrent ? 1 : 0.7,
-            transition: 'opacity 0.6s ease-in-out',
-          }}
-          alt={title}
-          src={src}
-          loading="eager"
-          decoding="sync"
-        />
-        {!isCurrent && (
-          <div
-            className="absolute inset-0 bg-black/15"
-            style={{ transition: 'opacity 1s ease' }}
-          />
-        )}
-      </div>
-
-      {/* spacer to push content to bottom */}
-      <div className="flex-1" />
-
-      <div
-        className="relative px-[4vmin] flex flex-col items-center gap-3"
-        style={{
-          opacity: isCurrent ? 1 : 0,
-          visibility: isCurrent ? 'visible' : 'hidden',
-          transition: 'opacity 1s ease-in-out',
-        }}
-      >
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold relative font-sans text-white">
-          {title}
-        </h2>
+    <div className="group relative w-96 h-64 shrink-0 overflow-hidden rounded-2xl bg-grey cursor-pointer">
+      <img
+        src={src}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between">
+        <h3 className="text-sm font-semibold text-white leading-tight max-w-[60%]">{title}</h3>
         <Link
           href={`/projects/${slug}`}
+          className="text-xs font-medium text-white/80 hover:text-white border border-white/40 hover:border-white/80 px-3 py-1.5 rounded-lg backdrop-blur-sm transition-colors duration-200 cursor-pointer shrink-0"
           onClick={(e) => e.stopPropagation()}
-          className="px-4 py-2 w-fit mx-auto sm:text-sm text-grey bg-cream h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:opacity-80 focus-visible:ring-2 focus-visible:ring-cream/60 active:scale-[0.97] cursor-pointer no-underline"
-          style={{
-            transition: 'opacity 0.2s ease, transform 0.2s ease',
-            boxShadow:
-              '0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)',
-          }}
         >
-          {button}
+          View Project
         </Link>
       </div>
-    </li>
+    </div>
   );
-};
-
-const CarouselControl = ({ type, title, handleClick }) => {
-  return (
-    <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-taupe border-3 border-transparent rounded-full focus:border-grey/40 focus:outline-none cursor-pointer hover:-translate-y-0.5 active:translate-y-0.5 ${
-        type === 'previous' ? 'rotate-180' : ''
-      }`}
-      style={{ transition: 'transform 0.2s ease' }}
-      title={title}
-      onClick={handleClick}
-    >
-      <IconArrowNarrowRight className="text-grey" />
-    </button>
-  );
-};
-
-// Get the shortest offset from `from` to `to` in a circular array of length `len`
-function circularOffset(from, to, len) {
-  const diff = to - from;
-  // Normalize to range [-len/2, len/2]
-  if (diff > len / 2) return diff - len;
-  if (diff < -len / 2) return diff + len;
-  return diff;
 }
 
 export default function Carousel({ slides }) {
-  const [current, setCurrent] = useState(0);
-  const len = slides.length;
-  const progress = useMotionValue(0);
-  const animationRef = useRef(null);
-
-  useEffect(() => {
-    progress.set(0);
-    const animation = fmAnimate(progress, 1, {
-      duration: AUTOPLAY_DURATION,
-      ease: 'linear',
-      onComplete: () => setCurrent((c) => (c + 1) % len),
-    });
-    animationRef.current = animation;
-    return () => animation.stop();
-  }, [current, len, progress]);
-
-  const handlePreviousClick = () => {
-    setCurrent((c) => (c - 1 + len) % len);
-  };
-
-  const handleNextClick = () => {
-    setCurrent((c) => (c + 1) % len);
-  };
-
-  const handleSlideClick = (index) => {
-    if (index !== current) {
-      setCurrent(index);
-    }
-  };
-
-  const id = useId();
-
   return (
-    <div
-      className="relative w-[63vmin] h-[63vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}
-      onMouseEnter={() => animationRef.current?.pause()}
-      onMouseLeave={() => animationRef.current?.play()}
-    >
-      <ul className="absolute inset-0">
-        {slides.map((slide, index) => {
-          const offset = circularOffset(current, index, len);
-          return (
-            <Slide
-              key={index}
-              slide={slide}
-              offset={offset}
-              isCurrent={index === current}
-              handleClick={() => handleSlideClick(index)}
-            />
-          );
-        })}
-      </ul>
+    <div className="relative w-full">
+      {/* Left fade */}
+      <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-cream to-transparent" />
+      {/* Right fade */}
+      <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-cream to-transparent" />
 
-      <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
-        <CarouselControl
-          type="previous"
-          title="Go to previous slide"
-          handleClick={handlePreviousClick}
-        />
-        <CarouselControl
-          type="next"
-          title="Go to next slide"
-          handleClick={handleNextClick}
-        />
-      </div>
+      <Marquee className="[--duration:50s]" style={{ '--gap': '3rem' }} pauseOnHover>
+        {slides.map((slide) => (
+          <ProjectCard key={slide.slug} {...slide} />
+        ))}
+      </Marquee>
     </div>
   );
 }

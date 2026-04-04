@@ -23,3 +23,12 @@ body {
   font-family: var(--font-sans);
   background: var(--color-cream);
 }
+
+@theme inline {
+  --animate-marquee: marquee var(--duration, 40s) infinite linear;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - var(--gap, 1.5rem))); }
+}

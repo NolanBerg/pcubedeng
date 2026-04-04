@@ -9,7 +9,7 @@ const stats = [
 
 export default function Statement() {
   return (
-    <section className="px-6 md:px-10 lg:px-16 pb-20 md:pb-32">
+    <section className="px-6 md:px-10 lg:px-16 pb-10 md:pb-16">
       <div className="max-w-[1600px] mx-auto">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           {/* Left: safety quote */}
