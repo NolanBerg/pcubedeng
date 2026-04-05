@@ -3,7 +3,7 @@ import { Marquee } from './Marquee';
 
 function ProjectCard({ title, src, slug }) {
   return (
-    <div className="group relative w-96 h-64 shrink-0 overflow-hidden rounded-2xl bg-grey cursor-pointer">
+    <div className="group relative w-[30rem] h-80 shrink-0 overflow-hidden rounded-2xl bg-grey cursor-pointer">
       <img
         src={src}
         alt={title}
