@@ -54,7 +54,7 @@ function ServiceGrid({ services }) {
 
 export default function Process() {
   return (
-    <section id="services-detail" className="text-white px-6 md:px-10 lg:px-16 py-12 md:py-20" style={{ backgroundColor: '#3D4347' }}>
+    <section id="services-detail" className="text-white px-6 md:px-10 lg:px-16 py-12 md:py-20" style={{ backgroundColor: '#3D4347', scrollMarginTop: '4rem' }}>
       <div className="max-w-[1600px] mx-auto">
         <FadeUp>
           <div className="mb-16">

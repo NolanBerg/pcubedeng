@@ -56,7 +56,7 @@ function FooterNavLink({ hash, href, label }) {
 
 export default function Footer() {
   return (
-    <footer id="contact" className="border-t border-taupe/50 px-6 md:px-10 lg:px-16 py-12 md:py-16">
+    <footer className="border-t border-taupe/50 px-6 md:px-10 lg:px-16 pt-6 pb-[4.5rem] md:pt-8 md:pb-[6.5rem]">
       <div className="max-w-[1600px] mx-auto">
         <div className="grid md:grid-cols-4 gap-10 md:gap-12 mb-16">
 

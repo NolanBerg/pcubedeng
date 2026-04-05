@@ -10,7 +10,9 @@
       "Read(//Users/nolanb/**)",
       "Bash(node screenshot.mjs http://127.0.0.1:3000)",
       "Bash(node screenshot.mjs http://127.0.0.1:3000 statement2)",
-      "Bash(node screenshot.mjs http://127.0.0.1:3000 projects)"
+      "Bash(node screenshot.mjs http://127.0.0.1:3000 projects)",
+      "Bash(node screenshot.mjs http://127.0.0.1:3000 home-full)",
+      "Bash(node -e ':*)"
     ],
     "additionalDirectories": [
       "/Users/nolanb/Projects/p3/app/projects"
