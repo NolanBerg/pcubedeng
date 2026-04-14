@@ -10,7 +10,7 @@ const socialLinks = [
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative min-h-[600px] overflow-hidden" style={{ height: '100dvh' }}>
       {/* Video background */}
       <video
         src="/newwindmill.mp4"
@@ -18,7 +18,16 @@ export default function Hero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute"
+        style={{
+          top: '50%',
+          left: '50%',
+          minWidth: '100vw',
+          minHeight: '100vh',
+          width: 'auto',
+          height: 'auto',
+          transform: 'translate(-50%, -50%)',
+        }}
       />
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
