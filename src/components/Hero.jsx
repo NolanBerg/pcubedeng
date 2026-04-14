@@ -13,7 +13,7 @@ export default function Hero() {
     <section className="relative h-screen min-h-[600px] overflow-hidden">
       {/* Video background */}
       <video
-        src="/windmill.mp4"
+        src="/newwindmill.mp4"
         autoPlay
         muted
         loop
