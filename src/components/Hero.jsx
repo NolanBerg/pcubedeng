@@ -18,16 +18,7 @@ export default function Hero() {
         muted
         loop
         playsInline
-        className="absolute"
-        style={{
-          top: '50%',
-          left: '50%',
-          minWidth: '100vw',
-          minHeight: '100vh',
-          width: 'auto',
-          height: 'auto',
-          transform: 'translate(-50%, -50%)',
-        }}
+        className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 

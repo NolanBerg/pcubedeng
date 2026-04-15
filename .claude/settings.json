@@ -15,11 +15,13 @@
       "Bash(node -e ':*)",
       "Bash(node screenshot.mjs http://127.0.0.1:3000 home)",
       "Bash(node screenshot.mjs http://127.0.0.1:3000 footer)",
-      "Bash(node screenshot.mjs http://127.0.0.1:3000/merch merch)"
+      "Bash(node screenshot.mjs http://127.0.0.1:3000/merch merch)",
+      "Bash(node screenshot.mjs http://127.0.0.1:3000 mobile --viewport 390x844)"
     ],
     "additionalDirectories": [
       "/Users/nolanb/Projects/p3/app/projects",
-      "/Users/nolanb/.claude"
+      "/Users/nolanb/.claude",
+      "/tmp"
     ]
   }
 }
