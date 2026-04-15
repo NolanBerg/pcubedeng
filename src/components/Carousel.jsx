@@ -1,13 +1,16 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Marquee } from './Marquee';
 
 function ProjectCard({ title, src, slug }) {
   return (
     <div className="group relative w-[clamp(200px,60vw,480px)] h-52 sm:h-64 md:h-80 shrink-0 overflow-hidden rounded-2xl bg-grey cursor-pointer">
-      <img
+      <Image
         src={src}
         alt={title}
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        className="object-cover"
+        sizes="(max-width: 640px) 60vw, 480px"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between">

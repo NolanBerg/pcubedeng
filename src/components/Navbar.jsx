@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -93,10 +94,13 @@ export default function Navbar({ isLoading }) {
                 transition={{ duration: 1.2, ease: premiumEase }}
                 className="p-0"
               >
-                <img
+                <Image
                   src="/logo.png"
                   alt="P Cubed Inc."
+                  width={180}
+                  height={56}
                   className="h-14 w-auto"
+                  priority
                 />
               </motion.div>
             )}

@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '../../../src/components/Navbar';
 import Footer from '../../../src/components/Footer';
 import projects from '../../../src/data/projects';
@@ -63,10 +64,13 @@ export default function ProjectPage() {
             </h1>
           </div>
           <div className="relative rounded-2xl overflow-hidden aspect-[16/9] max-w-4xl">
-            <img
+            <Image
               src={project.src}
               alt={project.title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 896px"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
           </div>

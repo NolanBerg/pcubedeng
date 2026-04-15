@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin } from '@tabler/icons-react';
 
@@ -63,7 +64,7 @@ export default function Footer() {
           {/* Logo + tagline + social */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-2 cursor-pointer mb-4" aria-label="Home">
-              <img src="/logo.png" alt="P Cubed Inc." className="h-10 w-auto" />
+              <Image src="/logo.png" alt="P Cubed Inc." width={160} height={40} className="h-10 w-auto" />
             </Link>
             <p className="text-sm text-grey/50 leading-[1.7] max-w-sm mb-5">
               Technical services for the power industry. Based in Wyoming, servicing the Western United States since 2008.
@@ -111,8 +112,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8 border-t border-taupe/30">
           <p className="font-mono text-xs text-grey/30">&copy; 2026 P Cubed, Inc. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="font-mono text-xs text-grey/30 hover:text-grey/60 cursor-pointer transition-colors duration-200">Privacy</a>
-            <a href="#" className="font-mono text-xs text-grey/30 hover:text-grey/60 cursor-pointer transition-colors duration-200">Terms</a>
+            <Link href="/privacy" className="font-mono text-xs text-grey/30 hover:text-grey/60 transition-colors duration-200">Privacy</Link>
           </div>
         </div>
       </div>
