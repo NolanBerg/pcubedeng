@@ -62,17 +62,45 @@ export default function ProjectPage() {
             <h1 className="text-[clamp(1.8rem,4vw,3.5rem)] leading-[1.1] font-bold tracking-[-0.03em] text-grey">
               {project.title}
             </h1>
+            {project.location && (
+              <p className="font-mono text-sm text-brand-brown mt-2">{project.location}</p>
+            )}
           </div>
-          <div className="relative rounded-2xl overflow-hidden aspect-[16/9] max-w-4xl">
-            <Image
-              src={project.src}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 896px"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 lg:items-start">
+            {/* Image */}
+            <div className="relative rounded-2xl overflow-hidden aspect-[16/9] w-full lg:w-3/5 shrink-0">
+              <Image
+                src={project.src}
+                alt={project.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </div>
+
+            {/* Description + bullets */}
+            {(project.description || project.bullets) && (
+              <div className="lg:pt-2">
+                {project.description && (
+                  <p className="text-lg leading-[1.7] text-grey/70 mb-8">
+                    {project.description}
+                  </p>
+                )}
+                {project.bullets && project.bullets.length > 0 && (
+                  <ul className="flex flex-col gap-3">
+                    {project.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-start gap-3">
+                        <span className="mt-[0.45em] w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" />
+                        <span className="text-base leading-[1.7] text-grey/60">{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
