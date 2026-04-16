@@ -46,7 +46,7 @@ const projects = [
   {
     title: 'Foote Creek Wind Farm',
     location: 'Arlington, WY',
-    src: '/brand_assets/Foot Creek Wind.png',
+    src: '/brand_assets/Foote Creek 2.jpg',
     slug: 'foote-creek-wind-farm',
     description: 'Construction management, tower inspection, safety supervision, and quality control services supporting a 13-turbine, 41 MW wind energy project.',
     bullets: [
@@ -58,7 +58,7 @@ const projects = [
   {
     title: 'Rock River Wind Farm',
     location: 'Rock River, WY',
-    src: '/brand_assets/Rock River Wind.png',
+    src: '/brand_assets/Rock River.jpeg',
     slug: 'rock-river-wind-farm',
     description: 'Full-scope construction management, tower inspection, safety supervision, and quality control for a 19-turbine, 50 MW wind farm project.',
     bullets: [
