@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Navbar from '../../src/components/Navbar';
 import Footer from '../../src/components/Footer';
 
@@ -31,6 +32,10 @@ const sections = [
 ];
 
 export default function PrivacyPage() {
+  useEffect(() => {
+    sessionStorage.setItem('hasVisited', 'true');
+  }, []);
+
   return (
     <div className="min-h-screen bg-cream flex flex-col">
       <Navbar isLoading={false} />
