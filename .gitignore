@@ -1,9 +1,5 @@
 node_modules/
 .next/
 out/
-temporary screenshots/
 .DS_Store
-.claude/
-CLAUDE.md
-claude.md
 screenshot.mjs
