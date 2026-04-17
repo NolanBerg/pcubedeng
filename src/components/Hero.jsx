@@ -13,13 +13,14 @@ export default function Hero() {
     <section className="relative min-h-[600px] overflow-hidden" style={{ height: '100dvh' }}>
       {/* Video background */}
       <video
-        src="/newwindmill.mp4"
         autoPlay
         muted
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-      />
+      >
+        <source src="/newwindmill-h264.mp4" type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       {/* Social rail — right edge, vertically centered, desktop only */}
