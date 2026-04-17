@@ -17,10 +17,10 @@ export default function BottomCTA() {
     e.preventDefault();
     setStatus('submitting');
     try {
-      const res = await fetch('https://formspree.io/f/xreorbjd', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({ access_key: '40815705-fb46-4739-8e7b-0fa6b796e5f8', ...fields }),
       });
       if (res.ok) {
         setStatus('success');
