@@ -15,7 +15,7 @@ const sections = [
   },
   {
     title: 'Contact Form Processor',
-    body: 'Our contact form is processed by Formspree, a third-party form service. By submitting the form, your data is also subject to Formspree\'s privacy policy. We encourage you to review their policy at formspree.io.',
+    body: 'Contact form submissions are sent via our own API endpoint using Resend, a transactional email service. Your name, email address, and message are transmitted securely to Resend for delivery. Your data is subject to Resend\'s privacy policy, available at resend.com/privacy.',
   },
   {
     title: 'Cookies',
