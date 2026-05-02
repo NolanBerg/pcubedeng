@@ -4,3 +4,6 @@ out/
 .DS_Store
 screenshot.mjs
 .vercel
+.env
+.env.local
+.env*.local
